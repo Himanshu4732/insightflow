@@ -24,22 +24,33 @@ const port = process.env.PORT || 5000;
 // Initialize Postgres DB
 initDb();
 
-// Configure CORS with credentials support for HTTPOnly cookies
-app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+const allowedOrigins = ['http://localhost:3000', 'http://127.0.0.1:3000'];
+
+const corsOptions = {
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean | string) => void) => {
+    if (!origin) {
+      callback(null, true);
+      return;
+    }
+    const isAllowed = allowedOrigins.includes(origin) || origin.endsWith('.vercel.app');
+    if (isAllowed) {
+      callback(null, origin);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
-}));
+};
+
+// Configure CORS with credentials support for HTTPOnly cookies
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: {
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
-    methods: ['GET', 'POST'],
-    credentials: true,
-  },
+  cors: corsOptions,
 });
 
 // Authentication and Operational routes

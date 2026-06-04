@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { requireAuth } from '../middleware/auth';
+import { Router, Response } from 'express';
+import { requireAuth, AuthenticatedRequest } from '../middleware/auth';
 import OpenAI from 'openai';
 
 const router = Router();
@@ -16,7 +16,7 @@ const MOCK_SCHEMAS: Record<string, string> = {
 };
 
 // POST /api/query/nl
-router.post('/nl', requireAuth, async (req, res) => {
+router.post('/nl', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
   const { question, dataset_id } = req.body;
 
   if (!question || !dataset_id) {

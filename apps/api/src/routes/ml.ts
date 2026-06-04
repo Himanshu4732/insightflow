@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { requireAuth } from '../middleware/auth';
+import { Router, Response } from 'express';
+import { requireAuth, AuthenticatedRequest } from '../middleware/auth';
 
 const router = Router();
 const ML_SERVICE_URL = process.env.VITE_ML_URL || 'http://localhost:8000';
@@ -15,7 +15,7 @@ async function isMlServiceOnline(): Promise<boolean> {
 }
 
 // 1. POST /api/ml/forecast
-router.post('/forecast', requireAuth, async (req, res) => {
+router.post('/forecast', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
   const { data, periods, freq } = req.body;
 
   if (!data || !periods) {
@@ -77,7 +77,7 @@ router.post('/forecast', requireAuth, async (req, res) => {
 });
 
 // 2. POST /api/ml/anomalies
-router.post('/anomalies', requireAuth, async (req, res) => {
+router.post('/anomalies', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
   const { data, sensitivity } = req.body;
 
   if (!data) {
@@ -130,7 +130,7 @@ router.post('/anomalies', requireAuth, async (req, res) => {
 });
 
 // 3. POST /api/ml/stats
-router.post('/stats', requireAuth, async (req, res) => {
+router.post('/stats', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
   const { column } = req.body;
 
   if (!column || !Array.isArray(column)) {

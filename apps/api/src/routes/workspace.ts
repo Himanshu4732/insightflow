@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Response } from 'express';
 import { requireAuth, AuthenticatedRequest } from '../middleware/auth';
 import { query, pool } from '../db';
 
@@ -49,7 +49,7 @@ router.post('/create', requireAuth, async (req: AuthenticatedRequest, res) => {
 });
 
 // GET /api/workspace - Retrieve the current workspace organization details
-router.get('/', requireAuth, async (req: AuthenticatedRequest, res) => {
+router.get('/', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
   const userId = req.user?.id;
   try {
     const orgRes = await query(
@@ -70,7 +70,7 @@ router.get('/', requireAuth, async (req: AuthenticatedRequest, res) => {
 });
 
 // PUT /api/workspace - Update workspace settings (name and slug)
-router.put('/', requireAuth, async (req: AuthenticatedRequest, res) => {
+router.put('/', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
   const userId = req.user?.id;
   const { name, slug } = req.body;
 
@@ -114,7 +114,7 @@ router.put('/', requireAuth, async (req: AuthenticatedRequest, res) => {
 });
 
 // DELETE /api/workspace - Delete the active workspace organization
-router.delete('/', requireAuth, async (req: AuthenticatedRequest, res) => {
+router.delete('/', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
   const userId = req.user?.id;
   try {
     const orgRes = await query(

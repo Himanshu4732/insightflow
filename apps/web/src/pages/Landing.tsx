@@ -15,6 +15,7 @@ import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Animation variants
 const fadeInUp = {
@@ -37,6 +38,7 @@ const staggerContainer = {
 };
 
 export default function Landing() {
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -70,7 +72,7 @@ export default function Landing() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer group">
+          <div className="flex items-center gap-2 cursor-pointer group" onClick={() => navigate('/')}>
             <div className="p-1.5 rounded-lg bg-accent/15 border border-accent/30 text-accent group-hover:bg-accent group-hover:text-text-primary transition-all duration-300">
               <Zap className="h-5 w-5 fill-current" />
             </div>
@@ -88,10 +90,10 @@ export default function Landing() {
 
           {/* CTA */}
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-text-muted hover:text-text-primary">
+            <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-text-muted hover:text-text-primary" onClick={() => navigate('/login')}>
               Log in
             </Button>
-            <Button variant="primary" size="sm" className="shadow-lg hover:shadow-accent/40">
+            <Button variant="primary" size="sm" className="shadow-lg hover:shadow-accent/40" onClick={() => navigate('/register')}>
               Get started free
             </Button>
           </div>
@@ -136,10 +138,10 @@ export default function Landing() {
             variants={fadeInUp}
             className="flex flex-col sm:flex-row gap-4 mb-16 w-full sm:w-auto"
           >
-            <Button variant="primary" size="lg" className="gap-2 group">
+            <Button variant="primary" size="lg" className="gap-2 group" onClick={() => navigate('/register')}>
               Start for free <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="ghost" size="lg" className="border border-border hover:bg-surface/50">
+            <Button variant="ghost" size="lg" className="border border-border hover:bg-surface/50" onClick={() => navigate('/login')}>
               View demo
             </Button>
           </motion.div>
@@ -408,7 +410,7 @@ export default function Landing() {
                     </li>
                   </ul>
                 </div>
-                <Button variant="secondary" className="w-full mt-6">Get started</Button>
+                <Button variant="secondary" className="w-full mt-6" onClick={() => navigate('/register')}>Get started</Button>
               </Card>
             </motion.div>
 
@@ -448,7 +450,7 @@ export default function Landing() {
                     </li>
                   </ul>
                 </div>
-                <Button variant="primary" className="w-full mt-6">Get started Pro</Button>
+                <Button variant="primary" className="w-full mt-6" onClick={() => navigate('/register')}>Get started Pro</Button>
               </Card>
             </motion.div>
 
@@ -483,7 +485,7 @@ export default function Landing() {
                     </li>
                   </ul>
                 </div>
-                <Button variant="secondary" className="w-full mt-6">Contact sales</Button>
+                <Button variant="secondary" className="w-full mt-6" onClick={() => navigate('/register')}>Contact sales</Button>
               </Card>
             </motion.div>
           </motion.div>

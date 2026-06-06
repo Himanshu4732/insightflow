@@ -19,7 +19,8 @@ import {
   FileSpreadsheet, 
   BarChart3, 
   Plus,
-  Trash2
+  Trash2,
+  Sparkles
 } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { 
@@ -162,6 +163,29 @@ export default function DataExplorer() {
       handleDatasetSwap(res.dataset_id);
     } catch (err: any) {
       toast.error(err.response?.data?.error || 'Failed to parse and upload dataset.', { id: uploadToast });
+    }
+  };
+
+  // Load example Apple Finance dataset from internet
+  const handleLoadDemoDataset = async () => {
+    const uploadToast = toast.loading('Fetching example Apple Finance CSV from internet...');
+    try {
+      const url = 'https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv';
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Failed to fetch from internet');
+      const csvText = await response.text();
+      const file = new File([csvText], 'finance_charts_apple.csv', { type: 'text/csv' });
+      
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      toast.loading('Parsing and importing spreadsheet...', { id: uploadToast });
+      const res = await uploadMutation.mutateAsync(formData);
+      toast.success('Apple Finance dataset imported successfully!', { id: uploadToast });
+      setIsUploadOpen(false);
+      handleDatasetSwap(res.dataset_id);
+    } catch (err: any) {
+      toast.error('Failed to load example dataset from internet.', { id: uploadToast });
     }
   };
 
@@ -687,6 +711,25 @@ export default function DataExplorer() {
                     </p>
                   </div>
                 </div>
+
+                {/* Demo dataset helper block */}
+                <div className="relative flex items-center justify-center py-1">
+                  <div className="absolute w-full border-t border-border/25" />
+                  <span className="relative bg-[#12121A] px-2.5 text-[10px] text-text-hint uppercase font-semibold">
+                    Or Instant Demo Data
+                  </span>
+                </div>
+
+                <Button
+                  type="button"
+                  variant="secondary"
+                  disabled={uploadMutation.isPending}
+                  onClick={handleLoadDemoDataset}
+                  className="w-full justify-center text-xs py-2 gap-1.5 border-dashed border-accent/40 text-accent bg-accent/5 hover:bg-accent/10 transition-all duration-200"
+                >
+                  <Sparkles className="h-3.5 w-3.5 text-accent animate-pulse" />
+                  Load Apple Finance CSV (from Internet)
+                </Button>
 
                 <div className="flex items-center gap-2 justify-end pt-2">
                   <Button

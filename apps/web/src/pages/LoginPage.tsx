@@ -12,8 +12,8 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function LoginPage() {
   const navigate = useNavigate();
   const { login, loginWithGoogle } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@insightflow.com');
+  const [password, setPassword] = useState('password123');
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -125,6 +125,25 @@ export default function LoginPage() {
           <div className="space-y-2">
             <h1 className="text-3xl font-display font-semibold tracking-tight">Welcome back</h1>
             <p className="text-sm text-text-muted">Enter your email to sign in to your dashboard</p>
+          </div>
+
+          {/* Recruiter Quick Access Card */}
+          <div className="p-3.5 rounded-xl bg-accent/10 border border-accent/20 space-y-2 text-left">
+            <div className="flex items-center gap-2 text-accent font-semibold text-xs">
+              <Sparkles className="h-4 w-4" />
+              <span>Recruiter Demo Access</span>
+            </div>
+            <p className="text-[11px] text-text-muted leading-relaxed">
+              We've pre-filled the credentials below for your convenience. Click <strong>Sign in</strong> to access the dashboard instantly!
+            </p>
+            <div className="flex items-center justify-between text-[11px] font-mono bg-[#111118]/60 p-2 rounded-lg border border-border/40">
+              <div>
+                <span className="text-text-hint">Email:</span> <span className="text-text-primary">admin@insightflow.com</span>
+              </div>
+              <div>
+                <span className="text-text-hint">PW:</span> <span className="text-text-primary">password123</span>
+              </div>
+            </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">

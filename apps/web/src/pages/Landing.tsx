@@ -9,7 +9,10 @@ import {
   Zap, 
   Check, 
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Cpu,
+  Activity,
+  FileSpreadsheet
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
@@ -54,27 +57,32 @@ export default function Landing() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-base text-text-primary overflow-x-hidden font-sans selection:bg-accent/30 selection:text-text-primary">
-      {/* Subtle Animated Radial Gradient Mesh */}
+    <div className="relative min-h-screen bg-[#030307] text-text-primary overflow-x-hidden font-sans selection:bg-accent/30 selection:text-text-primary">
+      
+      {/* Premium Cybernetic Grid and Glowing AI Mesh */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-accent/10 blur-[120px] animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-accent/5 blur-[120px] animate-pulse" style={{ animationDuration: '12s' }} />
-        <div className="absolute top-[30%] right-[10%] w-[40%] h-[40%] rounded-full bg-purple-900/5 blur-[100px]" />
+        {/* Cyber grid lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#131322_1px,transparent_1px),linear-gradient(to_bottom,#131322_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_80%,transparent_100%)] opacity-75" />
+        
+        {/* Floating gradient energy orbs */}
+        <div className="absolute top-[-10%] left-[10%] w-[60vw] h-[60vw] rounded-full bg-accent/8 blur-[130px] animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute top-[20%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-purple-600/5 blur-[120px] animate-pulse" style={{ animationDuration: '12s' }} />
+        <div className="absolute bottom-[-10%] left-[20%] w-[50vw] h-[50vw] rounded-full bg-cyan-600/4 blur-[140px]" />
       </div>
 
       {/* 1. Navbar */}
       <header 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled 
-            ? 'bg-base/70 backdrop-blur-md border-b border-border/80 py-4' 
+            ? 'bg-[#030307]/80 backdrop-blur-md border-b border-white/[0.04] py-4' 
             : 'bg-transparent py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer group" onClick={() => navigate('/')}>
-            <div className="p-1.5 rounded-lg bg-accent/15 border border-accent/30 text-accent group-hover:bg-accent group-hover:text-text-primary transition-all duration-300">
-              <Zap className="h-5 w-5 fill-current" />
+            <div className="p-1.5 rounded-lg bg-accent/15 border border-accent/30 text-accent group-hover:bg-accent group-hover:text-[#030307] transition-all duration-300 shadow-[0_0_15px_rgba(124,111,247,0.2)]">
+              <Zap className="h-5 w-5 fill-current animate-pulse" />
             </div>
             <span className="font-display font-semibold text-lg tracking-tight text-text-primary group-hover:text-accent transition-colors">
               InsightFlow
@@ -83,7 +91,7 @@ export default function Landing() {
 
           {/* Links */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-text-muted">
-            <a href="#features" className="hover:text-text-primary transition-colors">Features</a>
+            <a href="#features" className="hover:text-text-primary transition-colors hover:shadow-[0_0_8px_rgba(255,255,255,0.1)]">Features</a>
             <a href="#pricing" className="hover:text-text-primary transition-colors">Pricing</a>
             <a href="#docs" className="hover:text-text-primary transition-colors">Docs</a>
           </nav>
@@ -93,7 +101,7 @@ export default function Landing() {
             <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-text-muted hover:text-text-primary" onClick={() => navigate('/login')}>
               Log in
             </Button>
-            <Button variant="primary" size="sm" className="shadow-lg hover:shadow-accent/40" onClick={() => navigate('/register')}>
+            <Button variant="primary" size="sm" className="shadow-lg shadow-accent/25 hover:shadow-accent/40" onClick={() => navigate('/register')}>
               Get started free
             </Button>
           </div>
@@ -108,29 +116,28 @@ export default function Landing() {
           variants={staggerContainer}
           className="max-w-3xl flex flex-col items-center"
         >
-          {/* Badge */}
+          {/* AI Status Badge */}
           <motion.div variants={fadeInUp} className="mb-6">
-            <Badge variant="info" className="gap-1.5 px-3 py-1 bg-accent/10 border-accent/20 text-accent font-medium">
-              <Sparkles className="h-3 w-3" />
-              InsightFlow AI v2.0 is live
+            <Badge variant="info" className="gap-1.5 px-3.5 py-1 bg-accent/10 border-accent/25 text-accent font-medium font-mono uppercase tracking-wider text-[10px] shadow-[0_0_15px_rgba(124,111,247,0.1)]">
+              <Sparkles className="h-3.5 w-3.5 animate-spin" style={{ animationDuration: '4s' }} />
+              Autonomous Decision Engine v3.0
             </Badge>
           </motion.div>
 
           {/* Headline */}
           <motion.h1 
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-display font-semibold tracking-tight text-text-primary leading-[1.1] mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-text-primary leading-[1.15] mb-6"
           >
-            Turn raw data into <span className="bg-gradient-to-r from-accent via-[#A78BFA] to-[#C084FC] bg-clip-text text-transparent">real decisions</span>
+            Turn raw data sheets into <span className="bg-gradient-to-r from-accent via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(124,111,247,0.15)]">autonomous decisions</span>
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p 
             variants={fadeInUp}
-            className="text-base sm:text-lg text-text-muted max-w-xl leading-relaxed mb-8"
+            className="text-base sm:text-lg text-text-muted max-w-xl leading-relaxed mb-8 font-sans"
           >
-            Upload your CSV. Get AI dashboards, anomaly alerts, 
-            and forecasting — in under 60 seconds.
+            Upload any CSV spreadsheet. Let our neural intelligence pipeline automatically clean datatypes, scan for alerts, and output predictive models in seconds.
           </motion.p>
 
           {/* CTAs */}
@@ -138,116 +145,166 @@ export default function Landing() {
             variants={fadeInUp}
             className="flex flex-col sm:flex-row gap-4 mb-16 w-full sm:w-auto"
           >
-            <Button variant="primary" size="lg" className="gap-2 group" onClick={() => navigate('/register')}>
-              Start for free <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            <Button variant="primary" size="lg" className="gap-2 group shadow-lg shadow-accent/20" onClick={() => navigate('/register')}>
+              Launch Free Console <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="ghost" size="lg" className="border border-border hover:bg-surface/50" onClick={() => navigate('/login')}>
-              View demo
+            <Button variant="ghost" size="lg" className="border border-white/[0.08] hover:bg-white/[0.03] text-text-primary hover:text-accent transition-colors" onClick={() => navigate('/login')}>
+              Instant Demo Access
             </Button>
           </motion.div>
         </motion.div>
 
-        {/* Mock Dashboard Preview */}
+        {/* High-Tech Dashboard Mockup (HTML/CSS-driven) */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full max-w-5xl rounded-2xl border border-border/80 bg-surface/40 p-2 sm:p-3 backdrop-blur-xl shadow-2xl shadow-accent/5 relative group"
+          className="w-full max-w-5xl rounded-2xl border border-white/[0.08] bg-[#07070c]/60 p-1.5 sm:p-2 backdrop-blur-xl shadow-2xl shadow-accent/15 relative group"
         >
           {/* Subtle glow border */}
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-accent/30 via-purple-500/20 to-cyan-500/30 opacity-40 blur-[8px] group-hover:opacity-75 transition-opacity duration-700 pointer-events-none -z-10" />
           
-          <div className="rounded-xl border border-border/40 overflow-hidden bg-base/80 aspect-[16/10] relative">
-            {/* Inline SVG Mockup */}
-            <svg viewBox="0 0 960 600" className="w-full h-full text-text-muted select-none" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Sidebar */}
-              <rect x="0" y="0" width="70" height="600" fill="#111118" />
-              <line x1="70" y1="0" x2="70" y2="600" stroke="#1E1E2E" />
-              
-              {/* Sidebar Icons Mock */}
-              <circle cx="35" cy="35" r="10" fill="#7C6FF7" fillOpacity="0.2" stroke="#7C6FF7" strokeWidth="1.5" />
-              <path d="M30 35H40M35 30V40" stroke="#7C6FF7" strokeWidth="1.5" strokeLinecap="round" />
-              
-              <rect x="25" y="80" width="20" height="20" rx="4" fill="#16161F" stroke="#1E1E2E" />
-              <rect x="25" y="120" width="20" height="20" rx="4" fill="#16161F" stroke="#1E1E2E" />
-              <rect x="25" y="160" width="20" height="20" rx="4" fill="#16161F" stroke="#1E1E2E" />
-              <rect x="25" y="200" width="20" height="20" rx="4" fill="#16161F" stroke="#1E1E2E" />
-              
-              {/* Header */}
-              <rect x="70" y="0" width="890" height="60" fill="#111118" />
-              <line x1="70" y1="60" x2="960" y2="60" stroke="#1E1E2E" />
-              <text x="95" y="37" fill="#F1F0FF" fontFamily="Sora" fontWeight="600" fontSize="14">Workspace / Analytics</text>
-              
-              <rect x="760" y="15" width="120" height="30" rx="6" fill="#16161F" stroke="#1E1E2E" />
-              <circle cx="910" cy="30" r="12" fill="#7C6FF7" />
-              <text x="906" y="34" fill="#F1F0FF" fontFamily="DM Sans" fontWeight="600" fontSize="10">U</text>
+          <div className="rounded-xl border border-white/[0.06] overflow-hidden bg-[#0a0a0f]/90 relative flex flex-col font-sans select-none text-left">
+            {/* Top Command Bar */}
+            <div className="flex items-center justify-between px-4 py-3 bg-[#0e0e16]/80 border-b border-white/[0.05] text-xs">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-success animate-pulse" />
+                  <span className="text-[10px] uppercase font-mono tracking-wider font-semibold text-success">AI Neural Engine Active</span>
+                </div>
+                <span className="text-[10px] text-text-hint font-mono bg-white/5 px-2 py-0.5 rounded border border-white/[0.03]">MODEL: PROPHET-V4.2</span>
+              </div>
+              <div className="flex items-center gap-4 text-[10px] text-text-muted font-mono">
+                <span className="flex items-center gap-1"><Cpu className="h-3 w-3 text-accent" /> CUDA Cores: 16,384</span>
+                <span className="flex items-center gap-1"><Activity className="h-3 w-3 text-accent animate-pulse" /> Latency: 14ms</span>
+              </div>
+            </div>
 
-              {/* Main Content Dashboard */}
-              {/* KPI Cards */}
-              {/* Card 1 */}
-              <rect x="95" y="90" width="235" height="90" rx="10" fill="#111118" stroke="#1E1E2E" />
-              <text x="115" y="125" fill="#6B6B8A" fontFamily="DM Sans" fontSize="12">Total Datasets Analyzed</text>
-              <text x="115" y="157" fill="#F1F0FF" fontFamily="Sora" fontWeight="600" fontSize="24">1,482</text>
-              <rect x="260" y="137" width="50" height="20" rx="10" fill="#22C55E" fillOpacity="0.1" />
-              <text x="270" y="151" fill="#22C55E" fontFamily="DM Sans" fontWeight="600" fontSize="10">+12%</text>
-
-              {/* Card 2 */}
-              <rect x="362" y="90" width="235" height="90" rx="10" fill="#111118" stroke="#1E1E2E" />
-              <text x="382" y="125" fill="#6B6B8A" fontFamily="DM Sans" fontSize="12">Active Anomaly Alerts</text>
-              <text x="382" y="157" fill="#EF4444" fontFamily="Sora" fontWeight="600" fontSize="24">3</text>
-              <rect x="527" y="137" width="50" height="20" rx="10" fill="#EF4444" fillOpacity="0.1" />
-              <text x="536" y="151" fill="#EF4444" fontFamily="DM Sans" fontWeight="600" fontSize="10">Critical</text>
-
-              {/* Card 3 */}
-              <rect x="630" y="90" width="235" height="90" rx="10" fill="#111118" stroke="#1E1E2E" />
-              <text x="650" y="125" fill="#6B6B8A" fontFamily="DM Sans" fontSize="12">Avg. Insight Score</text>
-              <text x="650" y="157" fill="#F1F0FF" fontFamily="Sora" fontWeight="600" fontSize="24">94.8%</text>
-              <rect x="795" y="137" width="50" height="20" rx="10" fill="#7C6FF7" fillOpacity="0.1" />
-              <text x="806" y="151" fill="#7C6FF7" fontFamily="DM Sans" fontWeight="600" fontSize="10">Superb</text>
-
-              {/* Big Chart Card */}
-              <rect x="95" y="210" width="770" height="350" rx="12" fill="#111118" stroke="#1E1E2E" />
-              <text x="120" y="245" fill="#F1F0FF" fontFamily="Sora" fontWeight="600" fontSize="14">AI Revenue & Demand Forecasting</text>
-              <text x="120" y="265" fill="#6B6B8A" fontFamily="DM Sans" fontSize="11">Real-time prediction vs historical performance</text>
-
-              {/* Grid Lines */}
-              <line x1="120" y1="310" x2="840" y2="310" stroke="#1E1E2E" strokeDasharray="3 3" />
-              <line x1="120" y1="370" x2="840" y2="370" stroke="#1E1E2E" strokeDasharray="3 3" />
-              <line x1="120" y1="430" x2="840" y2="430" stroke="#1E1E2E" strokeDasharray="3 3" />
-              <line x1="120" y1="490" x2="840" y2="490" stroke="#1E1E2E" />
-
-              {/* Chart Lines (Historical - Solid Violet) */}
-              <path d="M120 480 Q180 430 240 450 T360 380 T480 390 T600 320 T720 340 T840 280" fill="none" stroke="#7C6FF7" strokeWidth="3" strokeLinecap="round" />
+            {/* Main Preview Grid */}
+            <div className="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/[0.05] bg-[#07070a]/90">
               
-              {/* Chart Lines (Forecast - Dotted Purple/Violet glow) */}
-              <path d="M600 320 Q660 280 720 260 T840 210" fill="none" stroke="#A78BFA" strokeWidth="2.5" strokeDasharray="6 4" strokeLinecap="round" />
-              
-              {/* Glow filter area representation */}
-              <circle cx="600" cy="320" r="5" fill="#7C6FF7" />
-              <circle cx="840" cy="210" r="5" fill="#A78BFA" />
+              {/* Sidebar Info */}
+              <div className="p-4 space-y-4 md:col-span-1">
+                <div className="space-y-1">
+                  <div className="text-[10px] uppercase font-mono tracking-wider text-text-hint">Loaded Dataset</div>
+                  <div className="text-xs font-semibold text-text-primary flex items-center gap-1.5">
+                    <FileSpreadsheet className="h-3.5 w-3.5 text-accent" />
+                    apple_finance_charts.csv
+                  </div>
+                </div>
 
-              {/* Legend */}
-              <rect x="700" y="235" width="8" height="8" rx="2" fill="#7C6FF7" />
-              <text x="715" y="243" fill="#6B6B8A" fontFamily="DM Sans" fontSize="11">Historical</text>
-              
-              <rect x="780" y="235" width="8" height="8" rx="2" fill="#A78BFA" />
-              <text x="795" y="243" fill="#6B6B8A" fontFamily="DM Sans" fontSize="11">Forecast</text>
-            </svg>
+                <div className="space-y-2 pt-2 border-t border-white/[0.05]">
+                  <div className="text-[10px] uppercase font-mono tracking-wider text-text-hint">Processing Statistics</div>
+                  <div className="space-y-1.5 text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-text-muted">Row Count:</span>
+                      <span className="font-mono text-text-primary">50,000</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-text-muted">Columns:</span>
+                      <span className="font-mono text-text-primary">12 inferred</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-text-muted">Anomalies:</span>
+                      <span className="font-mono text-warning">3 flagged</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-2.5 rounded-lg bg-accent/5 border border-accent/15 space-y-1.5">
+                  <div className="text-[9px] uppercase font-mono tracking-wider text-accent font-semibold flex items-center gap-1">
+                    <Sparkles className="h-3 w-3" /> Autonomous Insights
+                  </div>
+                  <p className="text-[10px] text-text-muted leading-relaxed">
+                    Volume deviation spotted in Q4 prediction interval. Suggests outlier demand spikes.
+                  </p>
+                </div>
+              </div>
+
+              {/* Central Chart View (2 columns) */}
+              <div className="p-4 md:col-span-2 space-y-4 flex flex-col justify-between">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-text-primary font-display">TimeSeries Predictive Path</span>
+                  <div className="flex items-center gap-3 text-[10px]">
+                    <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-accent" /> Historical</span>
+                    <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-purple-400" /> Forecast</span>
+                  </div>
+                </div>
+
+                {/* Styled CSS/SVG Chart */}
+                <div className="h-44 w-full relative flex items-end">
+                  <svg className="w-full h-full text-accent opacity-90 overflow-visible" viewBox="0 0 400 150">
+                    <defs>
+                      <linearGradient id="chartGlow" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.15" />
+                        <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M 0 130 Q 50 110 100 120 T 200 90 T 300 70 T 400 30" fill="url(#chartGlow)" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" />
+                    <path d="M 280 74 Q 340 50 400 20" fill="none" stroke="#A78BFA" strokeWidth="2.5" strokeDasharray="4 3" strokeLinecap="round" />
+                    <circle cx="280" cy="74" r="4" fill="var(--accent)" />
+                    <circle cx="400" cy="20" r="4" fill="#A78BFA" />
+                  </svg>
+                  {/* Floating tooltip */}
+                  <div className="absolute top-4 right-10 bg-[#0f0f18] border border-white/[0.08] p-2 rounded-lg text-[9px] shadow-lg pointer-events-none">
+                    <div className="text-text-hint">Dec 2026 Prediction</div>
+                    <div className="font-bold text-accent mt-0.5">$184.22 ± 4.5%</div>
+                  </div>
+                </div>
+
+                {/* Timeline Axis */}
+                <div className="flex justify-between text-[9px] text-text-hint font-mono border-t border-white/[0.05] pt-2">
+                  <span>JAN 2025</span>
+                  <span>JUL 2025</span>
+                  <span>JAN 2026</span>
+                  <span>JUL 2026</span>
+                  <span>DEC 2026 (F)</span>
+                </div>
+              </div>
+
+              {/* Right Sidebar - Anomalies Feed & Scanner */}
+              <div className="p-4 space-y-4 md:col-span-1">
+                <div className="text-[10px] uppercase font-mono tracking-wider text-text-hint">Live Anomaly Scanner</div>
+                <div className="space-y-2.5">
+                  <div className="p-2 bg-danger/5 border border-danger/20 rounded-lg flex items-center justify-between text-[10px]">
+                    <div className="flex items-center gap-1.5 text-danger font-medium">
+                      <ShieldAlert className="h-3 w-3 shrink-0" />
+                      <span>Volatility Shift</span>
+                    </div>
+                    <span className="text-[9px] text-text-hint font-mono">0.02ms</span>
+                  </div>
+                  <div className="p-2 bg-warning/5 border border-warning/20 rounded-lg flex items-center justify-between text-[10px]">
+                    <div className="flex items-center gap-1.5 text-warning font-medium">
+                      <ShieldAlert className="h-3 w-3 shrink-0" />
+                      <span>Pattern Outlier</span>
+                    </div>
+                    <span className="text-[9px] text-text-hint font-mono">1.4ms</span>
+                  </div>
+                  <div className="p-2 bg-success/5 border border-success/20 rounded-lg flex items-center justify-between text-[10px]">
+                    <div className="flex items-center gap-1.5 text-success font-medium">
+                      <Check className="h-3 w-3 shrink-0" />
+                      <span>Normal Ingestion</span>
+                    </div>
+                    <span className="text-[9px] text-text-hint font-mono">Just now</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </section>
 
       {/* 3. Logos Strip */}
-      <section className="border-t border-b border-border/40 bg-surface/20 py-10 px-6 z-10 relative">
+      <section className="border-t border-b border-white/[0.04] bg-[#07070c]/40 py-10 px-6 z-10 relative">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <span className="text-xs font-display font-medium uppercase tracking-wider text-text-hint">
+          <span className="text-xs font-mono font-medium uppercase tracking-widest text-text-hint">
             Trusted by teams at —
           </span>
           <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12">
             {['Acme Corp', 'Stripe', 'Linear', 'Vercel', 'Supabase'].map((company, index) => (
               <div 
                 key={index} 
-                className="px-4 py-2 rounded-lg border border-border/30 bg-surface/40 backdrop-blur-sm text-sm font-semibold font-display text-text-muted hover:text-text-primary hover:border-border transition-colors duration-200"
+                className="px-4 py-2 rounded-lg border border-white/[0.06] bg-white/[0.01] backdrop-blur-sm text-sm font-semibold font-display text-text-muted hover:text-text-primary hover:border-accent/30 hover:bg-white/[0.03] transition-all duration-300"
               >
                 {company}
               </div>
@@ -266,19 +323,19 @@ export default function Landing() {
           className="text-center max-w-3xl mx-auto mb-20"
         >
           <motion.div variants={fadeInUp} className="mb-4">
-            <Badge variant="info">Platform Features</Badge>
+            <Badge variant="info" className="font-mono text-[10px] tracking-wider uppercase bg-accent/10 border-accent/20 text-accent">Platform Capabilities</Badge>
           </motion.div>
           <motion.h2 
             variants={fadeInUp}
             className="text-3xl sm:text-4xl font-display font-semibold mb-4 text-text-primary"
           >
-            Everything you need to analyze, forecast, and act
+            Smarter ingestion. Real-time inference.
           </motion.h2>
           <motion.p 
             variants={fadeInUp}
             className="text-text-muted text-base sm:text-lg max-w-2xl mx-auto"
           >
-            Powerful cloud infrastructure, lightning-fast processing, and state-of-the-art ML modeling combined into one dashboard.
+            Our microservices automatically map dataset schemas, calculate vector deviations, and output reliable future trends.
           </motion.p>
         </motion.div>
 
@@ -293,49 +350,49 @@ export default function Landing() {
           {[
             {
               icon: Upload,
-              title: "Smart data ingestion",
-              desc: "Drag and drop any CSV. Our engine parses datatypes, structures columns, and sanitizes values automatically."
+              title: "Neural ingestion layer",
+              desc: "Drag and drop any spreadsheet. Our parser dynamically reads type representations, handles empty cells, and builds database indexes."
             },
             {
               icon: Brain,
-              title: "AI anomaly detection",
-              desc: "Identify outliers, shifts, and patterns. Receive instant notifications before anomalies affect business KPIs."
+              title: "Autonomous anomalies",
+              desc: "Constantly monitors metric patterns. Automatically alerts on transaction spike shifts and server-side deadlock latencies."
             },
             {
               icon: TrendingUp,
-              title: "Time-series forecasting",
-              desc: "Forecast trends, demand levels, and revenue up to 12 months ahead with custom-tailored statistical ML models."
+              title: "Predictive forecasting",
+              desc: "Calculate high-precision future curves. Utilizes robust time-series mathematical models with configurable confidence ranges."
             },
             {
               icon: MessageSquare,
-              title: "NL query engine",
-              desc: "Query your data in plain English. Ask 'Why did sales drop last Tuesday?' and receive structured visual graphs."
+              title: "Natural Query Assistant",
+              desc: "Interact with dataset rows via query bars. Ask direct numerical questions and visualize outcomes instantly."
             },
             {
               icon: BarChart3,
-              title: "Real-time dashboards",
-              desc: "Configure customized drag-and-drop metrics, widget types, and auto-updating reporting alerts."
+              title: "High-Fidelity Explorer",
+              desc: "Filter, sort, and slice thousands of spreadsheet rows. Click column headers to calculate descriptive parameters instantly."
             },
             {
               icon: ShieldAlert,
-              title: "Role-based access",
-              desc: "Scale security with SSO, MFA, granular dashboard viewer permissions, and end-to-end dataset encryption."
+              title: "Enterprise Grade Guardrails",
+              desc: "Built-in encryption layers, cookie-based token refreshes, and database transactions for all workspace updates."
             }
           ].map((feature, i) => (
             <motion.div 
               key={i} 
               variants={fadeInUp}
-              className="group h-[200px]" // Static height prevents layout shift
+              className="group h-[210px]"
             >
               <Card 
                 hoverEffect 
-                className="h-full bg-white/[0.03] border-white/[0.08] hover:border-accent/40 group-hover:shadow-[0_0_20px_rgba(124,111,247,0.06)] flex flex-col justify-between"
+                className="h-full bg-[#0a0a0f]/40 border-white/[0.04] hover:border-accent/40 hover:bg-[#0f0f18]/60 group-hover:shadow-[0_0_30px_rgba(124,111,247,0.08)] flex flex-col justify-between transition-all duration-300 backdrop-blur-md"
               >
                 <div>
-                  <div className="p-2 w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 text-accent group-hover:bg-accent group-hover:text-text-primary transition-all duration-300 flex items-center justify-center mb-4">
+                  <div className="p-2 w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 text-accent group-hover:bg-accent group-hover:text-[#030307] transition-all duration-300 flex items-center justify-center mb-4">
                     <feature.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="font-display font-medium text-text-primary mb-2 text-base group-hover:text-accent transition-colors">
+                  <h3 className="font-display font-semibold text-text-primary mb-2 text-base group-hover:text-accent transition-colors">
                     {feature.title}
                   </h3>
                   <p className="text-sm text-text-muted leading-relaxed">
@@ -349,7 +406,7 @@ export default function Landing() {
       </section>
 
       {/* 5. Pricing Section */}
-      <section id="pricing" className="py-24 md:py-32 bg-surface/10 border-t border-border/30 z-10 relative scroll-mt-20">
+      <section id="pricing" className="py-24 md:py-32 bg-[#05050a]/40 border-t border-white/[0.04] z-10 relative scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial="hidden"
@@ -359,19 +416,19 @@ export default function Landing() {
             className="text-center max-w-3xl mx-auto mb-20"
           >
             <motion.div variants={fadeInUp} className="mb-4">
-              <Badge variant="info">Simple Pricing</Badge>
+              <Badge variant="info" className="font-mono text-[10px] tracking-wider uppercase bg-accent/10 border-accent/20 text-accent">Pricing Tiers</Badge>
             </motion.div>
             <motion.h2 
               variants={fadeInUp}
               className="text-3xl sm:text-4xl font-display font-semibold mb-4 text-text-primary"
             >
-              Honest pricing, no hidden limits
+              Simple models, flexible scales
             </motion.h2>
             <motion.p 
               variants={fadeInUp}
               className="text-text-muted text-base sm:text-lg max-w-2xl mx-auto"
             >
-              Start for free, upgrade when your team grows. All plans include automated data backup and basic charting options.
+              Start analyzing with our free console, or upgrade to a dedicated enterprise pipeline.
             </motion.p>
           </motion.div>
 
@@ -385,15 +442,15 @@ export default function Landing() {
           >
             {/* Starter Plan */}
             <motion.div variants={fadeInUp} className="h-[460px]">
-              <Card className="h-full bg-white/[0.02] border-white/[0.08] hover:border-border-hover transition-all flex flex-col justify-between p-8">
+              <Card className="h-full bg-[#0a0a0f]/40 border-white/[0.05] hover:border-white/[0.1] transition-all duration-300 flex flex-col justify-between p-8 backdrop-blur-md">
                 <div>
-                  <h3 className="font-display font-medium text-text-muted text-sm mb-2 uppercase tracking-wide">Starter</h3>
+                  <h3 className="font-mono text-[#6B6B8A] text-xs mb-2 uppercase tracking-widest">Starter</h3>
                   <div className="flex items-baseline gap-1 mb-4">
-                    <span className="text-4xl font-display font-semibold text-text-primary">Free</span>
+                    <span className="text-4xl font-display font-bold text-text-primary">Free</span>
                   </div>
-                  <p className="text-xs text-text-muted mb-6 leading-relaxed">Perfect for individuals checking out basic data insights and simple visualizations.</p>
+                  <p className="text-xs text-text-muted mb-6 leading-relaxed">Perfect for exploring basic data insights, standard dashboard widgets, and demo testing.</p>
                   
-                  <hr className="border-border/50 my-6" />
+                  <hr className="border-white/[0.05] my-6" />
                   
                   <ul className="space-y-3.5 text-sm text-text-muted">
                     <li className="flex items-center gap-2.5">
@@ -410,26 +467,26 @@ export default function Landing() {
                     </li>
                   </ul>
                 </div>
-                <Button variant="secondary" className="w-full mt-6" onClick={() => navigate('/register')}>Get started</Button>
+                <Button variant="secondary" className="w-full mt-6 border border-white/[0.08] hover:bg-white/[0.03]" onClick={() => navigate('/register')}>Get started</Button>
               </Card>
             </motion.div>
 
-            {/* Pro Plan (Highlighted) */}
-            <motion.div variants={fadeInUp} className="h-[460px] relative">
-              <div className="absolute inset-0 bg-accent/20 blur-xl opacity-20 pointer-events-none rounded-2xl" />
-              <Card className="h-full bg-surface border-accent hover:border-accent-hover relative z-10 shadow-xl shadow-accent/5 flex flex-col justify-between p-8 transform scale-[1.02] md:-translate-y-1">
+            {/* Pro Plan (Highlighted with Neon Glow) */}
+            <motion.div variants={fadeInUp} className="h-[460px] relative group/price">
+              <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-accent via-purple-500 to-cyan-500 opacity-35 blur-[3px] group-hover:opacity-60 transition-opacity -z-10" />
+              <Card className="h-full bg-[#08080f] border-accent/80 hover:border-accent relative z-10 shadow-2xl shadow-accent/5 flex flex-col justify-between p-8 transform scale-[1.02] md:-translate-y-1 transition-all duration-300">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-display font-semibold text-accent text-sm uppercase tracking-wide">Pro</h3>
-                    <Badge variant="info" className="bg-accent/15 border-accent/30 text-accent font-medium px-2.5 py-0.5">MOST POPULAR</Badge>
+                    <h3 className="font-mono font-semibold text-accent text-xs uppercase tracking-widest">Pro</h3>
+                    <Badge variant="info" className="bg-accent/15 border-accent/30 text-accent font-semibold px-2.5 py-0.5 text-[9px] uppercase tracking-wider">RECOMMENDED</Badge>
                   </div>
                   <div className="flex items-baseline gap-1 mb-4">
-                    <span className="text-4xl font-display font-semibold text-text-primary">$29</span>
+                    <span className="text-4xl font-display font-bold text-text-primary">$29</span>
                     <span className="text-text-muted text-sm font-sans">/mo</span>
                   </div>
-                  <p className="text-xs text-text-muted mb-6 leading-relaxed">Advanced tools for scaling teams needing continuous metrics, anomaly warnings, and predictions.</p>
+                  <p className="text-xs text-text-muted mb-6 leading-relaxed">Advanced inference for growing teams needing anomaly triggers, vector graphs, and forecasts.</p>
                   
-                  <hr className="border-border/50 my-6" />
+                  <hr className="border-white/[0.05] my-6" />
                   
                   <ul className="space-y-3.5 text-sm text-text-primary">
                     <li className="flex items-center gap-2.5">
@@ -450,21 +507,21 @@ export default function Landing() {
                     </li>
                   </ul>
                 </div>
-                <Button variant="primary" className="w-full mt-6" onClick={() => navigate('/register')}>Get started Pro</Button>
+                <Button variant="primary" className="w-full mt-6 shadow-md shadow-accent/25" onClick={() => navigate('/register')}>Get started Pro</Button>
               </Card>
             </motion.div>
 
             {/* Enterprise Plan */}
             <motion.div variants={fadeInUp} className="h-[460px]">
-              <Card className="h-full bg-white/[0.02] border-white/[0.08] hover:border-border-hover transition-all flex flex-col justify-between p-8">
+              <Card className="h-full bg-[#0a0a0f]/40 border-white/[0.05] hover:border-white/[0.1] transition-all duration-300 flex flex-col justify-between p-8 backdrop-blur-md">
                 <div>
-                  <h3 className="font-display font-medium text-text-muted text-sm mb-2 uppercase tracking-wide">Enterprise</h3>
+                  <h3 className="font-mono text-[#6B6B8A] text-xs mb-2 uppercase tracking-widest">Enterprise</h3>
                   <div className="flex items-baseline gap-1 mb-4">
-                    <span className="text-4xl font-display font-semibold text-text-primary">Custom</span>
+                    <span className="text-4xl font-display font-bold text-text-primary">Custom</span>
                   </div>
-                  <p className="text-xs text-text-muted mb-6 leading-relaxed">Ultimate security, dedicated infrastructure, SLA response assurances, and white labeling.</p>
+                  <p className="text-xs text-text-muted mb-6 leading-relaxed">Ultimate security, dedicated compute slots, custom SLA, and white labeling.</p>
                   
-                  <hr className="border-border/50 my-6" />
+                  <hr className="border-white/[0.05] my-6" />
                   
                   <ul className="space-y-3.5 text-sm text-text-muted">
                     <li className="flex items-center gap-2.5">
@@ -485,7 +542,7 @@ export default function Landing() {
                     </li>
                   </ul>
                 </div>
-                <Button variant="secondary" className="w-full mt-6" onClick={() => navigate('/register')}>Contact sales</Button>
+                <Button variant="secondary" className="w-full mt-6 border border-white/[0.08] hover:bg-white/[0.03]" onClick={() => navigate('/register')}>Contact sales</Button>
               </Card>
             </motion.div>
           </motion.div>
@@ -493,7 +550,7 @@ export default function Landing() {
       </section>
 
       {/* 6. Footer */}
-      <footer className="border-t border-border/40 bg-surface/30 pt-16 pb-8 px-6 z-10 relative">
+      <footer className="border-t border-white/[0.04] bg-[#050508] pt-16 pb-8 px-6 z-10 relative">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
             {/* Tagline Column */}
@@ -505,14 +562,14 @@ export default function Landing() {
                 <span className="font-display font-semibold text-text-primary">InsightFlow</span>
               </div>
               <p className="text-sm text-text-muted max-w-xs leading-relaxed">
-                Empowering modern product development teams to interpret unstructured numbers instantly.
+                Empowering modern decision makers to extract predictive intelligence from unstructured tables instantly.
               </p>
             </div>
 
             {/* Links Columns */}
             <div>
-              <h4 className="text-xs font-display font-semibold text-text-primary uppercase tracking-wider mb-4">Product</h4>
-              <ul className="space-y-2.5 text-sm text-text-muted">
+              <h4 className="text-xs font-mono font-semibold text-text-primary uppercase tracking-widest mb-4">Product</h4>
+              <ul className="space-y-2.5 text-sm text-text-muted font-sans">
                 <li><a href="#features" className="hover:text-text-primary transition-colors">Features</a></li>
                 <li><a href="#pricing" className="hover:text-text-primary transition-colors">Pricing</a></li>
                 <li><a href="#docs" className="hover:text-text-primary transition-colors">API Docs</a></li>
@@ -520,8 +577,8 @@ export default function Landing() {
             </div>
 
             <div>
-              <h4 className="text-xs font-display font-semibold text-text-primary uppercase tracking-wider mb-4">Company</h4>
-              <ul className="space-y-2.5 text-sm text-text-muted">
+              <h4 className="text-xs font-mono font-semibold text-text-primary uppercase tracking-widest mb-4">Company</h4>
+              <ul className="space-y-2.5 text-sm text-text-muted font-sans">
                 <li><a href="#about" className="hover:text-text-primary transition-colors">About Us</a></li>
                 <li><a href="#careers" className="hover:text-text-primary transition-colors">Careers</a></li>
                 <li><a href="#blog" className="hover:text-text-primary transition-colors">Blog</a></li>
@@ -529,8 +586,8 @@ export default function Landing() {
             </div>
 
             <div>
-              <h4 className="text-xs font-display font-semibold text-text-primary uppercase tracking-wider mb-4">Legal</h4>
-              <ul className="space-y-2.5 text-sm text-text-muted">
+              <h4 className="text-xs font-mono font-semibold text-text-primary uppercase tracking-widest mb-4">Legal</h4>
+              <ul className="space-y-2.5 text-sm text-text-muted font-sans">
                 <li><a href="#privacy" className="hover:text-text-primary transition-colors">Privacy Policy</a></li>
                 <li><a href="#terms" className="hover:text-text-primary transition-colors">Terms of Service</a></li>
                 <li><a href="#security" className="hover:text-text-primary transition-colors">Security</a></li>
@@ -539,9 +596,9 @@ export default function Landing() {
           </div>
 
           {/* Bottom line */}
-          <div className="border-t border-border/40 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-hint">
+          <div className="border-t border-white/[0.04] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-hint font-mono">
             <span>© {new Date().getFullYear()} InsightFlow Inc. All rights reserved.</span>
-            <span className="flex items-center gap-1 font-display">
+            <span className="flex items-center gap-1">
               Built with love in India 🇮🇳
             </span>
           </div>

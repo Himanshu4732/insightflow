@@ -127,11 +127,11 @@ export default function LoginPage() {
             <p className="text-sm text-text-muted">Enter your email to sign in to your dashboard</p>
           </div>
 
-          {/* Recruiter Quick Access Card */}
+          {/* Demo Access Card */}
           <div className="p-3.5 rounded-xl bg-accent/10 border border-accent/20 space-y-2 text-left">
             <div className="flex items-center gap-2 text-accent font-semibold text-xs">
               <Sparkles className="h-4 w-4" />
-              <span>Recruiter Demo Access</span>
+              <span>Demo Access</span>
             </div>
             <p className="text-[11px] text-text-muted leading-relaxed">
               We've pre-filled the credentials below for your convenience. Click <strong>Sign in</strong> to access the dashboard instantly!
